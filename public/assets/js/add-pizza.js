@@ -59,12 +59,16 @@ const handlePizzaSubmit = event => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(formData)
-  }).then(response => response.json()).then(postResponse => {
-    alert('Pizza created successfully!');
-    console.log(postResponse);
-  }).catch(err => {
-    console.log(err);
-  });
+  })
+    .then(response => response.json())
+    .then(postResponse => {
+      console.log(postResponse);
+    })
+    .catch(err => {
+      console.log(err);
+      saveRecord(formData);
+      // DO INDEXED DB STUFF HERE
+    });
 };
 
 $pizzaForm.addEventListener('submit', handlePizzaSubmit);
